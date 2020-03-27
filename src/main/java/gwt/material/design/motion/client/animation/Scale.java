@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,12 +22,14 @@ package gwt.material.design.motion.client.animation;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.user.client.ui.Widget;
 import gwt.material.design.client.ui.animate.Animation;
+import gwt.material.design.jquery.client.api.Functions;
 
 //TODO: Added TransformAnimation
 public class Scale implements Animation {
 
     protected int duration, delay;
     protected Widget widget;
+    protected Functions.Func callback;
     protected double from;
     protected double to;
 
@@ -37,12 +39,40 @@ public class Scale implements Animation {
 
     @Override
     public void animate() {
-        widget.getElement().getStyle().setProperty("transform", "scale(" + from + ")");
         Scheduler.get().scheduleFixedDelay(() -> {
-            widget.getElement().getStyle().setProperty("transition", duration + "ms");
-            widget.getElement().getStyle().setProperty("transform", "scale(" + to + ")");
+            widget.getElement().getStyle().setProperty("transform", "scale(" + from + ")");
+            Scheduler.get().scheduleFixedDelay(() -> {
+                widget.getElement().getStyle().setProperty("transition", duration + "ms");
+                widget.getElement().getStyle().setProperty("transform", "scale(" + to + ")");
+                return false;
+            }, delay);
             return false;
         }, delay);
+    }
+
+    public Scale duration(int duration) {
+        setDuration(duration);
+        return this;
+    }
+
+    public Scale delay(int delay) {
+        setDelay(delay);
+        return this;
+    }
+
+    public Scale callback(Functions.Func callback) {
+        setCallback(callback);
+        return this;
+    }
+
+    public Scale from(double from) {
+        setFrom(from);
+        return this;
+    }
+
+    public Scale to(double to) {
+        setTo(to);
+        return this;
     }
 
     @Override
@@ -68,6 +98,16 @@ public class Scale implements Animation {
     @Override
     public int getDuration() {
         return duration;
+    }
+
+    @Override
+    public Functions.Func getCallback() {
+        return callback;
+    }
+
+    @Override
+    public void setCallback(Functions.Func callback) {
+        this.callback = callback;
     }
 
     public double getTo() {

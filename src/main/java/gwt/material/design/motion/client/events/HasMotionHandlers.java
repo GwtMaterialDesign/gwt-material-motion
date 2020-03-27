@@ -21,6 +21,7 @@ package gwt.material.design.motion.client.events;
 
 import com.google.gwt.event.shared.HandlerRegistration;
 
+//TODO: Add events later on
 public interface HasMotionHandlers {
 
     HandlerRegistration addMotionInitHandler(MotionInitEvent.MotionInitHandler handler);
