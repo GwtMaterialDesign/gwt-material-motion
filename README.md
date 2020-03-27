@@ -24,6 +24,7 @@ Patterns:
       - Fab -> Media Player
       - Fab -> Sheet
       - Chip -> Expanded Chip
+      <img src="https://github.com/flutter/packages/raw/master/packages/animations/example/demo_gifs/container_transform_lineup.gif" />
 2. Shared Axis
     - Navigation Relationship between UI Elements
     - Onboarding and Steppers
@@ -31,6 +32,7 @@ Patterns:
       - Horizontal
       - Vertical
       - Z Axis (Forward -> Backward)
+      <img src="https://github.com/flutter/packages/raw/master/packages/animations/example/demo_gifs/shared_axis_lineup.gif"/>
 3. Fade Through	
     - UI elements that do not have a strong relationship
 	- If no relation between UI Elements.
@@ -38,12 +40,14 @@ Patterns:
       - Tapping Destinations in a bottom navigation bar
       - Tapping a refresh icon
       - Tapping an account switcher
+      <img src="https://github.com/flutter/packages/raw/master/packages/animations/example/demo_gifs/fade_through_lineup.gif"/>
 4. Fade
 	- If UI Element simply needs to enter or exit the screen
       - Dialog
       - Menu
       - Snackbar
       - FAB
+      <img src="https://github.com/flutter/packages/raw/master/packages/animations/example/demo_gifs/fade_lineup.gif"/>
 
 ## Reference
 https://material.io/design/motion/the-motion-system.html#container-transform
