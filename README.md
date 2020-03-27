@@ -1,4 +1,5 @@
 <img src="https://i.imgur.com/m8q4JAB.png"/>
+
 # gwt-material-motion
 Google Design Motion implementation on GMD
 
@@ -51,6 +52,9 @@ Patterns:
       <img src="https://github.com/flutter/packages/raw/master/packages/animations/example/demo_gifs/fade_lineup.gif"/>
 
 ## Reference
+
 https://material.io/design/motion/the-motion-system.html
+
 https://material.io/design/motion/customization.html
+
 https://material.io/develop/android/theming/motion/
