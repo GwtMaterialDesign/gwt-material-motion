@@ -1,10 +1,8 @@
-package gwt.material.design.motion.client.pattern;
+package gwt.material.design.motion.client.pattern.base;
 
 import gwt.material.design.client.base.MaterialWidget;
-import gwt.material.design.motion.client.config.HasEnterTransition;
 
-public abstract class SharedElementPattern extends AbstractMotionPattern
-    implements HasEnterTransition {
+public abstract class SharedElementPattern implements MotionPattern {
 
     protected MaterialWidget source;
     protected MaterialWidget target;

@@ -1,8 +1,8 @@
-package gwt.material.design.motion.client.pattern;
+package gwt.material.design.motion.client.pattern.base;
 
 import gwt.material.design.client.base.MaterialWidget;
 
-public abstract class StandaloneElementPattern extends AbstractMotionPattern {
+public abstract class StandaloneElementPattern implements MotionPattern {
 
     protected MaterialWidget target;
 

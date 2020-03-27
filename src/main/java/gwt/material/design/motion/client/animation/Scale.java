@@ -29,7 +29,7 @@ public class Scale implements Animation {
 
     protected int duration, delay;
     protected Widget widget;
-    protected Functions.Func callback;
+    protected Functions.Func startCallback, completeCallback;
     protected double from;
     protected double to;
 
@@ -60,8 +60,13 @@ public class Scale implements Animation {
         return this;
     }
 
-    public Scale callback(Functions.Func callback) {
-        setCallback(callback);
+    public Scale completeCallback(Functions.Func completeCallback) {
+        setCompleteCallback(completeCallback);
+        return this;
+    }
+
+    public Scale startCallback(Functions.Func startCallback) {
+        setStartCallback(startCallback);
         return this;
     }
 
@@ -101,13 +106,23 @@ public class Scale implements Animation {
     }
 
     @Override
-    public Functions.Func getCallback() {
-        return callback;
+    public Functions.Func getCompleteCallback() {
+        return completeCallback;
     }
 
     @Override
-    public void setCallback(Functions.Func callback) {
-        this.callback = callback;
+    public void setStartCallback(Functions.Func startCallback) {
+        this.startCallback = startCallback;
+    }
+
+    @Override
+    public Functions.Func getStartCallback() {
+        return startCallback;
+    }
+
+    @Override
+    public void setCompleteCallback(Functions.Func completeCallback) {
+        this.completeCallback = completeCallback;
     }
 
     public double getTo() {

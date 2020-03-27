@@ -25,6 +25,7 @@ import gwt.material.design.motion.client.animation.FadeOut;
 import gwt.material.design.motion.client.animation.Scale;
 import gwt.material.design.motion.client.config.EnterTransition;
 import gwt.material.design.motion.client.config.HasEnterTransition;
+import gwt.material.design.motion.client.pattern.base.SharedElementPattern;
 
 public class MaterialFadeThrough extends SharedElementPattern implements HasEnterTransition {
 
@@ -40,7 +41,7 @@ public class MaterialFadeThrough extends SharedElementPattern implements HasEnte
     public void init() {
         enterTransition.register(new FadeOut(source)
             .duration(80)
-            .callback(() -> {
+            .completeCallback(() -> {
                 source.setVisible(false);
                 target.setVisible(true);
             }));
@@ -57,7 +58,12 @@ public class MaterialFadeThrough extends SharedElementPattern implements HasEnte
     }
 
     @Override
-    public void enterTransition() {
+    public void completed() {
+
+    }
+
+    @Override
+    public void enter() {
         enterTransition.call();
     }
 }

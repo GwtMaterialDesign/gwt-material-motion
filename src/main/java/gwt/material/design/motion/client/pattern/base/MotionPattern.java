@@ -17,9 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package gwt.material.design.motion.client.pattern;
-
-import gwt.material.design.motion.client.config.MotionConfig;
+package gwt.material.design.motion.client.pattern.base;
 
 //TODO: Implement Entering and Exiting motion animations / transitions
 public interface MotionPattern {
