@@ -20,13 +20,10 @@
 package gwt.material.design.motion.client.pattern.fadethrough;
 
 import gwt.material.design.client.base.MaterialWidget;
-import gwt.material.design.motion.client.animation.FadeIn;
-import gwt.material.design.motion.client.animation.FadeOut;
-import gwt.material.design.motion.client.animation.Scale;
+import gwt.material.design.motion.client.config.EnterTransition;
 import gwt.material.design.motion.client.config.HasEnterTransition;
-import gwt.material.design.motion.client.events.MotionCompletedEvent;
-import gwt.material.design.motion.client.events.MotionStartedEvent;
 import gwt.material.design.motion.client.pattern.base.SharedElementPattern;
+import gwt.material.design.motion.client.pattern.fadethrough.transition.FadeThroughEnterTransition;
 
 public class MaterialFadeThrough extends SharedElementPattern implements HasEnterTransition {
 
@@ -41,12 +38,16 @@ public class MaterialFadeThrough extends SharedElementPattern implements HasEnte
     @Override
     public void init() {
         super.init();
-
         enterTransition.init(this);
     }
 
     @Override
     public void enter() {
         enterTransition.call();
+    }
+
+    @Override
+    public EnterTransition getEnterTransition() {
+        return enterTransition;
     }
 }

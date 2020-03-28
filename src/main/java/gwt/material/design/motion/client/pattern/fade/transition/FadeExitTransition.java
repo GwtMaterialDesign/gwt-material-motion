@@ -1,9 +1,10 @@
-package gwt.material.design.motion.client.pattern.fade;
+package gwt.material.design.motion.client.pattern.fade.transition;
 
 import gwt.material.design.client.base.MaterialWidget;
 import gwt.material.design.motion.client.animation.FadeOut;
 import gwt.material.design.motion.client.config.ExitTransition;
 import gwt.material.design.motion.client.events.MotionCompletedEvent;
+import gwt.material.design.motion.client.pattern.fade.MaterialFade;
 
 public class FadeExitTransition extends ExitTransition<MaterialFade> {
 

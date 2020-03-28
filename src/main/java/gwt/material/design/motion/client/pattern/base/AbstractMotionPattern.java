@@ -10,6 +10,9 @@ import gwt.material.design.motion.client.events.MotionStartedEvent;
 public abstract class AbstractMotionPattern extends SimpleEventBus
     implements MotionPattern, HasMotionHandlers {
 
+    public AbstractMotionPattern() {
+    }
+
     @Override
     public void init() {
         MotionInitEvent.fire(this);

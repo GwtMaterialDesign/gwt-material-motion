@@ -1,10 +1,11 @@
-package gwt.material.design.motion.client.pattern.fade;
+package gwt.material.design.motion.client.pattern.fade.transition;
 
 import gwt.material.design.client.base.MaterialWidget;
 import gwt.material.design.motion.client.animation.FadeIn;
 import gwt.material.design.motion.client.animation.Scale;
 import gwt.material.design.motion.client.config.EnterTransition;
 import gwt.material.design.motion.client.events.MotionStartedEvent;
+import gwt.material.design.motion.client.pattern.fade.MaterialFade;
 
 public class FadeEnterTransition extends EnterTransition<MaterialFade> {
     

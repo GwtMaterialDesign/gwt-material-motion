@@ -1,8 +1,10 @@
 package gwt.material.design.motion.client.animation;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.user.client.ui.Widget;
 import gwt.material.design.client.ui.animate.Animation;
+import gwt.material.design.client.ui.animate.debugger.AnimationGlobalConfig;
 import gwt.material.design.jquery.client.api.Functions;
 
 public abstract class TransformAnimation<T> implements Animation {
@@ -17,6 +19,7 @@ public abstract class TransformAnimation<T> implements Animation {
     //TODO: Why we need to add a predefined delay when animation the Transform.
     @Override
     public void animate() {
+        if (AnimationGlobalConfig.ENABLE_DEBUGGING) GWT.log(toString());
         Scheduler.get().scheduleFixedDelay(() -> {
             widget.getElement().getStyle().setProperty("transform", property.getName() + "(" + from + ")");
             Scheduler.get().scheduleFixedDelay(() -> {
@@ -70,7 +73,7 @@ public abstract class TransformAnimation<T> implements Animation {
 
     @Override
     public void setDelay(int delay) {
-        this.delay = delay;
+        this.delay = (int) (delay * AnimationGlobalConfig.SPEED.getValue());
     }
 
     @Override
@@ -80,7 +83,7 @@ public abstract class TransformAnimation<T> implements Animation {
 
     @Override
     public void setDuration(int duration) {
-        this.duration = duration;
+        this.duration = (int) (duration * AnimationGlobalConfig.SPEED.getValue());
     }
 
     @Override
@@ -122,5 +125,17 @@ public abstract class TransformAnimation<T> implements Animation {
 
     public void setFrom(T from) {
         this.from = from;
+    }
+
+    @Override
+    public String toString() {
+        return "TransformAnimation{" +
+            "duration=" + duration +
+            ", delay=" + delay +
+            ", widget=" + widget +
+            ", property=" + property +
+            ", from=" + from +
+            ", to=" + to +
+            '}';
     }
 }
