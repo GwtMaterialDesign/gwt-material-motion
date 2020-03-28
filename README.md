@@ -12,6 +12,7 @@ Material Motion.
 Requirements 
 1. Usage of Core & Material Transitions.
 2. Path Animator
+3. Add new TransformAnimation
 
 Patterns:
 1. Container Transform (Path Animation)
