@@ -17,19 +17,20 @@
  * limitations under the License.
  * #L%
  */
-package gwt.material.design.motion.client.pattern;
+package gwt.material.design.motion.client.pattern.fadethrough;
 
 import gwt.material.design.client.base.MaterialWidget;
 import gwt.material.design.motion.client.animation.FadeIn;
 import gwt.material.design.motion.client.animation.FadeOut;
 import gwt.material.design.motion.client.animation.Scale;
-import gwt.material.design.motion.client.config.EnterTransition;
 import gwt.material.design.motion.client.config.HasEnterTransition;
+import gwt.material.design.motion.client.events.MotionCompletedEvent;
+import gwt.material.design.motion.client.events.MotionStartedEvent;
 import gwt.material.design.motion.client.pattern.base.SharedElementPattern;
 
 public class MaterialFadeThrough extends SharedElementPattern implements HasEnterTransition {
 
-    protected EnterTransition enterTransition = new EnterTransition();
+    protected FadeThroughEnterTransition enterTransition = new FadeThroughEnterTransition();
 
     public MaterialFadeThrough(MaterialWidget source, MaterialWidget target) {
         super(source, target);
@@ -39,27 +40,9 @@ public class MaterialFadeThrough extends SharedElementPattern implements HasEnte
 
     @Override
     public void init() {
-        enterTransition.register(new FadeOut(source)
-            .duration(80)
-            .completeCallback(() -> {
-                source.setVisible(false);
-                target.setVisible(true);
-            }));
+        super.init();
 
-        enterTransition.register(new FadeIn(target)
-            .delay(80)
-            .duration(220));
-
-        enterTransition.register(new Scale(target)
-            .delay(80)
-            .duration(220)
-            .from(0.92)
-            .to(1));
-    }
-
-    @Override
-    public void completed() {
-
+        enterTransition.init(this);
     }
 
     @Override

@@ -28,14 +28,11 @@ import gwt.material.design.motion.client.config.MotionConfig;
 
 public class MotionInitEvent extends GwtEvent<MotionInitEvent.MotionInitHandler> {
 
-    private final MotionConfig motionData;
-
-    public MotionInitEvent(MotionConfig motionData) {
-        this.motionData = motionData;
+    public MotionInitEvent() {
     }
 
-    public static void fire(HasHandlers source, MotionConfig motionData) {
-        source.fireEvent(new MotionInitEvent(motionData));
+    public static void fire(HasHandlers source) {
+        source.fireEvent(new MotionInitEvent());
     }
 
     @Override
@@ -46,10 +43,6 @@ public class MotionInitEvent extends GwtEvent<MotionInitEvent.MotionInitHandler>
     @Override
     protected void dispatch(MotionInitHandler handler) {
         handler.onMotionInit(this);
-    }
-
-    public MotionConfig getMotionData() {
-        return motionData;
     }
 
     public static final Type<MotionInitHandler> TYPE = new Type<>();

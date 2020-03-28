@@ -2,7 +2,7 @@ package gwt.material.design.motion.client.pattern.base;
 
 import gwt.material.design.client.base.MaterialWidget;
 
-public abstract class SharedElementPattern implements MotionPattern {
+public abstract class SharedElementPattern extends AbstractMotionPattern {
 
     protected MaterialWidget source;
     protected MaterialWidget target;

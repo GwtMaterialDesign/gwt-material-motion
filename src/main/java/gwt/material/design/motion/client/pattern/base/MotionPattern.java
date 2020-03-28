@@ -19,10 +19,9 @@
  */
 package gwt.material.design.motion.client.pattern.base;
 
-//TODO: Implement Entering and Exiting motion animations / transitions
 public interface MotionPattern {
 
-    // Functions
     void init();
+    void started();
     void completed();
 }

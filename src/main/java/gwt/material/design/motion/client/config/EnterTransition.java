@@ -1,11 +1,12 @@
 package gwt.material.design.motion.client.config;
 
 import gwt.material.design.client.ui.animate.Animation;
+import gwt.material.design.motion.client.pattern.base.MotionPattern;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnterTransition implements TransitionCallback {
+public abstract class EnterTransition<T extends MotionPattern> implements TransitionCallback<T> {
 
     protected List<Animation> animations = new ArrayList<>();
 

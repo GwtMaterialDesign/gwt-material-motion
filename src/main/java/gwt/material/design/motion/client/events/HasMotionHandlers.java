@@ -26,6 +26,5 @@ public interface HasMotionHandlers {
 
     HandlerRegistration addMotionInitHandler(MotionInitEvent.MotionInitHandler handler);
     HandlerRegistration addMotionStartedHandler(MotionStartedEvent.MotionStartedHandler handler);
-    HandlerRegistration addMotionTransitioningHandler(MotionTransitioningEvent.MotionTransitioningHandler handler);
     HandlerRegistration addMotionCompletedHandler(MotionCompletedEvent.MotionCompletedHandler handler);
 }
