@@ -16,9 +16,8 @@ public class MaterialSharedAxis extends SharedElementPattern
     protected SharedAxisTransitionRegistry registry = new SharedAxisTransitionRegistry();
     protected ExitTransition exitTransition;
 
-
     public MaterialSharedAxis(MaterialWidget source, MaterialWidget target) {
-        this(source, target, SharedAxisType.Y_AXIS);
+        this(source, target, SharedAxisType.X_AXIS);
     }
 
     public MaterialSharedAxis(MaterialWidget source, MaterialWidget target, SharedAxisType axisType) {

@@ -28,7 +28,7 @@ public abstract class TransformAnimation<T> implements Animation {
                 return false;
             }, delay);
             return false;
-        }, delay);
+        }, 20);
     }
 
     public TransformAnimation(Widget widget, TransformProperty transformProperty) {
