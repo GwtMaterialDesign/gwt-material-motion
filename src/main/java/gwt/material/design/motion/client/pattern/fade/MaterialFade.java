@@ -6,11 +6,11 @@ import gwt.material.design.motion.client.pattern.fade.transition.FadeExitTransit
 
 public class MaterialFade {
 
-    public static void animate(Widget widget, boolean enter) {
-        if (enter) {
-            new FadeEnterTransition().call(widget);
-        } else {
-            new FadeExitTransition().call(widget);
-        }
+    public static void enter(Widget widget) {
+        new FadeEnterTransition().call(widget);
+    }
+
+    public static void exit(Widget widget) {
+        new FadeExitTransition().call(widget);
     }
 }

@@ -28,16 +28,16 @@ public class MaterialFadeThrough {
     protected MaterialFadeThrough() {
     }
 
-    public static void animate(Widget widget, boolean enter) {
-        if (enter) {
-            new FadeThroughEnterTransition().call(widget);
-        } else {
-            new FadeThroughExitTransition().call(widget);
-        }
+    public static void enter(Widget widget) {
+        new FadeThroughEnterTransition().call(widget);
+    }
+
+    public static void exit(Widget widget) {
+        new FadeThroughExitTransition().call(widget);
     }
 
     public static void animate(Widget source, Widget target) {
-        animate(source, false);
-        animate(target, true);
+        exit(source);
+        enter(target);
     }
 }
