@@ -19,35 +19,25 @@
  */
 package gwt.material.design.motion.client.pattern.fadethrough;
 
-import gwt.material.design.client.base.MaterialWidget;
-import gwt.material.design.motion.client.config.EnterTransition;
-import gwt.material.design.motion.client.config.HasEnterTransition;
-import gwt.material.design.motion.client.pattern.base.SharedElementPattern;
+import com.google.gwt.user.client.ui.Widget;
 import gwt.material.design.motion.client.pattern.fadethrough.transition.FadeThroughEnterTransition;
+import gwt.material.design.motion.client.pattern.fadethrough.transition.FadeThroughExitTransition;
 
-public class MaterialFadeThrough extends SharedElementPattern implements HasEnterTransition {
+public class MaterialFadeThrough {
 
-    protected FadeThroughEnterTransition enterTransition = new FadeThroughEnterTransition();
-
-    public MaterialFadeThrough(MaterialWidget source, MaterialWidget target) {
-        super(source, target);
-
-        init();
+    protected MaterialFadeThrough() {
     }
 
-    @Override
-    public void init() {
-        super.init();
-        enterTransition.init(this);
+    public static void animate(Widget widget, boolean enter) {
+        if (enter) {
+            new FadeThroughEnterTransition().call(widget);
+        } else {
+            new FadeThroughExitTransition().call(widget);
+        }
     }
 
-    @Override
-    public void enter() {
-        enterTransition.call();
-    }
-
-    @Override
-    public EnterTransition getEnterTransition() {
-        return enterTransition;
+    public static void animate(Widget source, Widget target) {
+        animate(source, false);
+        animate(target, true);
     }
 }

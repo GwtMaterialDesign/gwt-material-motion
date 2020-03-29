@@ -24,7 +24,6 @@ package gwt.material.design.motion.client.events;
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HasHandlers;
-import gwt.material.design.motion.client.config.MotionConfig;
 
 public class MotionInitEvent extends GwtEvent<MotionInitEvent.MotionInitHandler> {
 

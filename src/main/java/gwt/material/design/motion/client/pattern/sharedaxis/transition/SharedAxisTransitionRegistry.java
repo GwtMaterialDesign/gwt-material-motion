@@ -1,38 +1,40 @@
 package gwt.material.design.motion.client.pattern.sharedaxis.transition;
 
-import gwt.material.design.motion.client.config.EnterTransition;
-import gwt.material.design.motion.client.config.ExitTransition;
 import gwt.material.design.motion.client.pattern.sharedaxis.SharedAxisType;
-import gwt.material.design.motion.client.pattern.sharedaxis.transition.x.SharedAxisEnterTransitionXAxis;
-import gwt.material.design.motion.client.pattern.sharedaxis.transition.x.SharedAxisExitTransitionXAxis;
-import gwt.material.design.motion.client.pattern.sharedaxis.transition.y.SharedAxisEnterTransitionYAxis;
-import gwt.material.design.motion.client.pattern.sharedaxis.transition.y.SharedAxisExitTransitionYAxis;
-import gwt.material.design.motion.client.pattern.sharedaxis.transition.z.SharedAxisEnterTransitionZAxis;
-import gwt.material.design.motion.client.pattern.sharedaxis.transition.z.SharedAxisExitTransitionZAxis;
+import gwt.material.design.motion.client.pattern.sharedaxis.transition.x.SharedXAxisEnterTransition;
+import gwt.material.design.motion.client.pattern.sharedaxis.transition.x.SharedXAxisExitTransition;
+import gwt.material.design.motion.client.pattern.sharedaxis.transition.y.SharedYAxisEnterTransition;
+import gwt.material.design.motion.client.pattern.sharedaxis.transition.y.SharedYAxisExitTransition;
+import gwt.material.design.motion.client.pattern.sharedaxis.transition.z.SharedZAxisEnterTransition;
+import gwt.material.design.motion.client.pattern.sharedaxis.transition.z.SharedZAxisExitTransition;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class SharedAxisTransitionRegistry {
 
-    protected static Map<SharedAxisType, EnterTransition> enterTransitionMap = new HashMap<>();
-    protected static Map<SharedAxisType, ExitTransition> exitTransitionMap = new HashMap<>();
+    protected static Map<SharedAxisType, SharedAxisTransitionSet> enterTransitionMap = new HashMap<>();
+    protected static Map<SharedAxisType, SharedAxisTransitionSet> exitTransitionMap = new HashMap<>();
 
     static {
-        enterTransitionMap.put(SharedAxisType.X_AXIS, new SharedAxisEnterTransitionXAxis());
-        enterTransitionMap.put(SharedAxisType.Y_AXIS, new SharedAxisEnterTransitionYAxis());
-        enterTransitionMap.put(SharedAxisType.Z_AXIS, new SharedAxisEnterTransitionZAxis());
+        enterTransitionMap.put(SharedAxisType.X_AXIS, new SharedXAxisEnterTransition());
+        enterTransitionMap.put(SharedAxisType.Y_AXIS, new SharedYAxisEnterTransition());
+        enterTransitionMap.put(SharedAxisType.Z_AXIS, new SharedZAxisEnterTransition());
 
-        exitTransitionMap.put(SharedAxisType.X_AXIS, new SharedAxisExitTransitionXAxis());
-        exitTransitionMap.put(SharedAxisType.Y_AXIS, new SharedAxisExitTransitionYAxis());
-        exitTransitionMap.put(SharedAxisType.Z_AXIS, new SharedAxisExitTransitionZAxis());
+        exitTransitionMap.put(SharedAxisType.X_AXIS, new SharedXAxisExitTransition());
+        exitTransitionMap.put(SharedAxisType.Y_AXIS, new SharedYAxisExitTransition());
+        exitTransitionMap.put(SharedAxisType.Z_AXIS, new SharedZAxisExitTransition());
     }
 
-    public EnterTransition getEnterTransition(SharedAxisType axisType) {
-        return enterTransitionMap.get(axisType);
+    public SharedAxisTransitionSet getEnterTransition(SharedAxisType axisType, boolean forward) {
+        SharedAxisTransitionSet sharedAxisTransitionSet = enterTransitionMap.get(axisType);
+        sharedAxisTransitionSet.setForward(forward);
+        return sharedAxisTransitionSet;
     }
 
-    public ExitTransition getExitTransition(SharedAxisType axisType) {
-        return exitTransitionMap.get(axisType);
+    public SharedAxisTransitionSet getExitTransition(SharedAxisType axisType, boolean forward) {
+        SharedAxisTransitionSet sharedAxisTransitionSet = exitTransitionMap.get(axisType);
+        sharedAxisTransitionSet.setForward(forward);
+        return sharedAxisTransitionSet;
     }
 }
