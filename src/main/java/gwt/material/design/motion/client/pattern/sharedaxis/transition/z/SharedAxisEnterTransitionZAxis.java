@@ -5,8 +5,6 @@ import gwt.material.design.motion.client.animation.FadeIn;
 import gwt.material.design.motion.client.animation.FadeOut;
 import gwt.material.design.motion.client.animation.Scale;
 import gwt.material.design.motion.client.config.EnterTransition;
-import gwt.material.design.motion.client.events.MotionCompletedEvent;
-import gwt.material.design.motion.client.events.MotionStartedEvent;
 import gwt.material.design.motion.client.pattern.sharedaxis.MaterialSharedAxis;
 
 public class SharedAxisEnterTransitionZAxis extends EnterTransition<MaterialSharedAxis> {
@@ -31,6 +29,7 @@ public class SharedAxisEnterTransitionZAxis extends EnterTransition<MaterialShar
 
         // Target or Incoming elements scale from 80% to 100%
         register(new Scale(target)
+            .delay(90) // we dont need delay , seems there's a bug
             .duration(300)
             .from(0.8)
             .to(1.0));

@@ -11,7 +11,7 @@ import gwt.material.design.motion.client.pattern.sharedaxis.transition.SharedAxi
 public class MaterialSharedAxis extends SharedElementPattern
     implements HasEnterTransition, HasExitTransition {
 
-    protected SharedAxisType axisType = SharedAxisType.X_AXIS;
+    protected SharedAxisType axisType;
     protected EnterTransition enterTransition;
     protected SharedAxisTransitionRegistry registry = new SharedAxisTransitionRegistry();
     protected ExitTransition exitTransition;
