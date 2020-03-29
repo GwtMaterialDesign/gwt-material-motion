@@ -9,7 +9,7 @@ import gwt.material.design.motion.client.pattern.base.SharedElementPattern;
 import gwt.material.design.motion.client.pattern.sharedaxis.transition.SharedAxisTransitionRegistry;
 
 public class MaterialSharedAxis extends SharedElementPattern
-    implements HasEnterTransition, HasExitTransition, HasSharedAxisType {
+    implements HasEnterTransition, HasExitTransition {
 
     protected SharedAxisType axisType = SharedAxisType.X_AXIS;
     protected EnterTransition enterTransition;
@@ -22,8 +22,8 @@ public class MaterialSharedAxis extends SharedElementPattern
 
     public MaterialSharedAxis(MaterialWidget source, MaterialWidget target, SharedAxisType axisType) {
         super(source, target);
+        this.axisType = axisType;
 
-        setSharedAxisType(axisType);
         init();
     }
 
@@ -56,15 +56,5 @@ public class MaterialSharedAxis extends SharedElementPattern
     @Override
     public void exit() {
         exitTransition.call();
-    }
-
-    @Override
-    public void setSharedAxisType(SharedAxisType axisType) {
-        this.axisType = axisType;
-    }
-
-    @Override
-    public SharedAxisType getSharedAxisType() {
-        return axisType;
     }
 }

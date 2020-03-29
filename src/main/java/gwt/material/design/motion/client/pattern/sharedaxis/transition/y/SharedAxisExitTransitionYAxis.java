@@ -16,6 +16,27 @@ public class SharedAxisExitTransitionYAxis extends ExitTransition<MaterialShared
     public void init(MaterialSharedAxis sharedAxis) {
         MaterialWidget source = sharedAxis.getSource();
         MaterialWidget target = sharedAxis.getTarget();
-        //TODO: Exit
+
+        register(new FadeOut(target)
+            .startCallback(() -> MotionStartedEvent.fire(sharedAxis))
+            .duration(90)
+            .completeCallback(() -> {
+                target.setVisible(false);
+                source.setVisible(true);
+            }));
+
+        register(new Slide(target, Axis.VERTICAL)
+            .duration(90)
+            .to("20px"));
+
+        register(new FadeIn(source)
+            .delay(90)
+            .duration(210));
+
+        register(new Slide(source, Axis.VERTICAL)
+            .delay(90)
+            .to("0px")
+            .duration(210)
+            .completeCallback(() -> MotionCompletedEvent.fire(sharedAxis)));
     }
 }

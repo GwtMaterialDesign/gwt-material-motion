@@ -16,6 +16,8 @@ public class SharedAxisEnterTransitionYAxis extends EnterTransition<MaterialShar
     public void init(MaterialSharedAxis sharedAxis) {
         MaterialWidget source = sharedAxis.getSource();
         MaterialWidget target = sharedAxis.getTarget();
+
+        // Source or Outgoing elements fade out
         register(new FadeOut(source)
             .startCallback(() -> MotionStartedEvent.fire(sharedAxis))
             .duration(90)
@@ -24,15 +26,18 @@ public class SharedAxisEnterTransitionYAxis extends EnterTransition<MaterialShar
                 target.setVisible(true);
             }));
 
+        // Source or Outgoing elements slide 20px (30dp) vertically
         register(new Slide(source, Axis.VERTICAL)
             .duration(90)
             .from("0px")
             .to("-20px"));
 
+        // Incoming or Target elements fade in
         register(new FadeIn(target)
             .delay(90)
             .duration(210));
 
+        // Incoming or Target elements slide 20px (30dp) vertically
         register(new Slide(target, Axis.VERTICAL)
             .delay(90)
             .from("20px")
