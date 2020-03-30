@@ -1,22 +1,34 @@
 package gwt.material.design.motion.client.pattern.sharedaxis;
 
-import com.google.gwt.user.client.ui.Widget;
+import gwt.material.design.motion.client.pattern.AbstractTransitionPattern;
+import gwt.material.design.motion.client.pattern.TransitionSet;
 import gwt.material.design.motion.client.pattern.sharedaxis.transition.SharedAxisTransitionRegistry;
 
-public class MaterialSharedAxis {
+public class MaterialSharedAxis extends AbstractTransitionPattern {
 
-    public static SharedAxisTransitionRegistry registry = new SharedAxisTransitionRegistry();
+    protected static MaterialSharedAxis instance;
+    protected static SharedAxisTransitionRegistry registry = new SharedAxisTransitionRegistry();
+    protected SharedAxisConfig config = new SharedAxisConfig(SharedAxisType.X_AXIS, true);
 
-    public static void enter(Widget widget, SharedAxisType sharedAxisType, boolean forward) {
-        registry.getEnterTransition(sharedAxisType, forward).call(widget);
+    public MaterialSharedAxis setConfig(SharedAxisConfig config) {
+        this.config = config;
+        return this;
     }
 
-    public static void exit(Widget widget, SharedAxisType sharedAxisType, boolean forward) {
-        registry.getExitTransition(sharedAxisType, forward).call(widget);
+    @Override
+    public TransitionSet getEnterTransition() {
+        return registry.getEnterTransition(config.getAxisType(), config.isForward());
     }
 
-    public static void animate(Widget source, Widget target, SharedAxisType axisType, boolean forward) {
-        exit(source, axisType, forward);
-        enter(target, axisType, forward);
+    @Override
+    public TransitionSet getExitTransition() {
+        return registry.getExitTransition(config.getAxisType(), config.isForward());
+    }
+
+    public static MaterialSharedAxis getInstance() {
+        if (instance == null) {
+            instance = new MaterialSharedAxis();
+        }
+        return instance;
     }
 }

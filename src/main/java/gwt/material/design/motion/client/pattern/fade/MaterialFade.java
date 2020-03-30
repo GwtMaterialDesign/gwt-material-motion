@@ -1,16 +1,28 @@
 package gwt.material.design.motion.client.pattern.fade;
 
-import com.google.gwt.user.client.ui.Widget;
+import gwt.material.design.motion.client.pattern.AbstractTransitionPattern;
+import gwt.material.design.motion.client.pattern.TransitionSet;
 import gwt.material.design.motion.client.pattern.fade.transition.FadeEnterTransition;
 import gwt.material.design.motion.client.pattern.fade.transition.FadeExitTransition;
 
-public class MaterialFade {
+public class MaterialFade extends AbstractTransitionPattern {
 
-    public static void enter(Widget widget) {
-        new FadeEnterTransition().call(widget);
+    protected static MaterialFade instance;
+
+    @Override
+    public TransitionSet getEnterTransition() {
+        return new FadeEnterTransition();
     }
 
-    public static void exit(Widget widget) {
-        new FadeExitTransition().call(widget);
+    @Override
+    public TransitionSet getExitTransition() {
+        return new FadeExitTransition();
+    }
+
+    public static MaterialFade getInstance() {
+        if (instance == null) {
+            return new MaterialFade();
+        }
+        return instance;
     }
 }

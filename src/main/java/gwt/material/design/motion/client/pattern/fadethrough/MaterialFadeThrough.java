@@ -19,25 +19,29 @@
  */
 package gwt.material.design.motion.client.pattern.fadethrough;
 
-import com.google.gwt.user.client.ui.Widget;
+import gwt.material.design.motion.client.pattern.AbstractTransitionPattern;
+import gwt.material.design.motion.client.pattern.TransitionSet;
 import gwt.material.design.motion.client.pattern.fadethrough.transition.FadeThroughEnterTransition;
 import gwt.material.design.motion.client.pattern.fadethrough.transition.FadeThroughExitTransition;
 
-public class MaterialFadeThrough {
+public class MaterialFadeThrough extends AbstractTransitionPattern {
 
-    protected MaterialFadeThrough() {
+    protected static MaterialFadeThrough instance;
+
+    @Override
+    public TransitionSet getEnterTransition() {
+        return new FadeThroughEnterTransition();
     }
 
-    public static void enter(Widget widget) {
-        new FadeThroughEnterTransition().call(widget);
+    @Override
+    public TransitionSet getExitTransition() {
+        return new FadeThroughExitTransition();
     }
 
-    public static void exit(Widget widget) {
-        new FadeThroughExitTransition().call(widget);
-    }
-
-    public static void animate(Widget source, Widget target) {
-        exit(source);
-        enter(target);
+    public static MaterialFadeThrough getInstance() {
+        if (instance == null) {
+            instance = new MaterialFadeThrough();
+        }
+        return instance;
     }
 }
