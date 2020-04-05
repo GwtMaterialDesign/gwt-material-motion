@@ -1,3 +1,22 @@
+/*
+ * #%L
+ * GwtMaterial
+ * %%
+ * Copyright (C) 2015 - 2020 GwtMaterialDesign
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 package gwt.material.design.motion.client.animation;
 
 import com.google.gwt.core.client.GWT;
@@ -16,24 +35,38 @@ public abstract class TransformAnimation<T> implements Animation {
     protected T from;
     protected T to;
 
+    public TransformAnimation(Widget widget, TransformProperty transformProperty) {
+        this.widget = widget;
+        this.property = transformProperty;
+    }
+
     //TODO: Why we need to add a predefined delay when animation the Transform.
     @Override
     public void animate() {
         if (AnimationGlobalConfig.ENABLE_DEBUGGING) GWT.log(toString());
+
+        if (startCallback != null) fireStartCallback();
         Scheduler.get().scheduleFixedDelay(() -> {
             widget.getElement().getStyle().setProperty("transform", property.getName() + "(" + from + ")");
             Scheduler.get().scheduleFixedDelay(() -> {
                 widget.getElement().getStyle().setProperty("transition", duration + "ms");
                 widget.getElement().getStyle().setProperty("transform", property.getName() + "(" + to + ")");
+                if (completeCallback != null) fireCompleteCallback();
                 return false;
             }, delay);
             return false;
         }, 20);
     }
 
-    public TransformAnimation(Widget widget, TransformProperty transformProperty) {
-        this.widget = widget;
-        this.property = transformProperty;
+    protected void fireStartCallback() {
+        startCallback.call();
+    }
+
+    protected void fireCompleteCallback() {
+        Scheduler.get().scheduleFixedDelay(() -> {
+            completeCallback.call();
+            return false;
+        }, duration);
     }
 
     public TransformAnimation<T> duration(int duration) {
